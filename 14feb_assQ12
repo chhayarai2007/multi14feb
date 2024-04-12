@@ -1,0 +1,76 @@
+Q1. what is multithreading in python? why is it used?Name the module used to handle threads in python.
+ans:- Multithreading in python is a programming technique that allows you to run multiple threads within a single process.
+a thread is a lightweight process that can run independently of other threads.
+it is used to :-
+ 1. improve the performance of python program by running multiple tasks.
+ 2. to make our python program more responsive to user input.etc   
+THREADING module is use to handle threads in python.
+
+Q2.why threading module used? write the uses of the following functions: 1. activeCount() 2.currentThread9() 3.enumerate()
+
+Ans:- threading module is used for creating, controlling and managing threads in python. threading.active_count() Function This function returns the number of Thread objects currently alive.
+
+import time import threading
+
+def thread1(i): time.sleep(3) #print('No. printed by Thread 1: %d' %i)
+
+def thread2(i): time.sleep(3) #print('No. printed by Thread 2: %d' %i)
+
+if name == 'main': t1 = threading.Thread(target=thread1, args=(10,)) t2 = threading.Thread(target=thread2, args=(12,)) t1.start() t2.start() print("No. of active threads: " + threading.active_count()) t1.join() t2.join()
+
+No. of active threads: 3
+
+threading.current_thread() This function will return the current Thread object, corresponding to the caller's thread of control(which is in the control of caller currently). If the caller's thread of control was not created through the threading module(for example the main thread), then a dummy thread object with limited functionality is returned.
+
+Q3. Explain the following functions run() start() join() isAlive()
+
+Ans:- def run_a_star_join_is_alive(thread): """Runs a star join on the given thread and checks if it is alive.
+
+Args: thread: A threading.Thread object.
+
+Returns: True if the thread is alive, False otherwise. """
+
+thread.join() return thread.is_alive()
+
+This function takes a threading.Thread object as input and returns True if the thread is alive, False otherwise. The function first calls the join() method on the thread object. This blocks the calling thread until the thread whose join() method is called is terminated. Once the thread has been joined, the function calls the is_alive() method on the thread object. This method returns True if the thread is still alive, False otherwise.
+
+run() method executes any target function belonging to a given thread object that is now active. It normally executes in the background after the . start() method is invoked
+
+write a python program to create two threads. Thread one must print the list of squares and thread two must print the list of cubes
+import threading
+def print_cube(num):
+    print("Cube: {}" .format(num * num * num))
+ 
+ 
+def print_square(num):
+    print("Square: {}" .format(num * num))
+ 
+ 
+if __name__ =="__main__":
+    t1 = threading.Thread(target=print_square, args=(10,))
+    t2 = threading.Thread(target=print_cube, args=(10,))
+ 
+    t1.start()
+    t2.start()
+ 
+    t1.join()
+    t2.join()
+ 
+    print("Done!")
+Square: 100
+Cube: 1000
+Done!
+5. State advantages and disadvantages of multithreading
+Ans:-Advantages:
+
+It doesn’t block the user. This is because threads are independent of each other. Better use of system resources is possible since threads execute tasks parallely. Enhanced performance on multi-processor machines. Multi-threaded servers and interactive GUIs use multithreading exclusively.
+
+Disadvantages:
+
+As number of threads increase, complexity increases. Synchronization of shared resources (objects, data) is necessary. It is difficult to debug, result is sometimes unpredictable. Potential deadlocks which leads to starvation, i.e. some threads may not be served with a bad design Constructing and synchronizing threads is CPU/memory intensive.
+
+6.Explain deadlocks and race conditions.
+Ans: Race conditions and deadlocks are both situations that occur in multi-thread solutions and can affect device performance. In a race condition, two threads use the same variable at the same time, while in a deadlock, two threads try to get the same lock at the same time.
+
+​
+
